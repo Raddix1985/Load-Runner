@@ -21,17 +21,17 @@ public class PlayerMotor : MonoBehaviour
     
     void Update()
     {
-        if(Time.time < animationDuration)
+       if(Time.time < animationDuration)
         {
-            controller.Move(Vector3.forward * speed * Time.deltaTime);
-            return;
+           controller.Move(Vector3.forward * speed * Time.deltaTime);
+           return;
         }
 
-        moveVector = Vector3.zero;
+           moveVector = Vector3.zero;
 
         if (controller.isGrounded)
         {
-            verticalVelocity = -0.5f;
+            verticalVelocity = -0.0f;
         }
         else
         {

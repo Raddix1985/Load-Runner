@@ -19,7 +19,7 @@ public class CameraMotor : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         moveVector = lookAt.position + startOffset;
 
@@ -38,9 +38,10 @@ public class CameraMotor : MonoBehaviour
             // Animation at start of game
             transform.position = Vector3.Lerp(moveVector + animationOffset, moveVector, transition);
             transition += Time.deltaTime * 1 / animationDuration;
+            transform.LookAt(lookAt.position + Vector3.up);
         }
 
-        transform.position = moveVector;
+        
 
     }
 }

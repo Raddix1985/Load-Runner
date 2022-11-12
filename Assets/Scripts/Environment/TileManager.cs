@@ -7,18 +7,27 @@ public class TileManager : MonoBehaviour
     public GameObject[] tilePrefabs;
 
     private Transform playerTransform;
-    private float spawnZ = 0.0f;
+    private float spawnZ = -6.0f;
     private float tileLength = 15.0f;
     private int amountOfTiles = 7;
+    private float safeZone = 18.0f;
+    private int lastPrefabIndex = 0;
+
+    private List<GameObject> activeTiles;
 
     
     void Start()
     {
+        activeTiles = new List<GameObject>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         for (int i = 0; i < amountOfTiles; i++)
         {
-            SpawnTile();
+            if (i < 2)
+                SpawnTile(0);
+            else
+                SpawnTile();
+           
         }
       
     }
@@ -26,18 +35,50 @@ public class TileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerTransform.position.z < (spawnZ - amountOfTiles * tileLength))
+        if (playerTransform.position.z - safeZone > (spawnZ - amountOfTiles * tileLength))
         {
             SpawnTile();
+            DeleteTile();
         }
     }
 
     private void SpawnTile(int prefabIndex = -1)
     {
         GameObject go;
-        go = Instantiate(tilePrefabs[0]) as GameObject;
+        if(prefabIndex == -1)
+        {
+           go = Instantiate(tilePrefabs[RandomPrefabIndex()]) as GameObject;
+        }
+        else
+        {
+            go = Instantiate(tilePrefabs[prefabIndex]) as GameObject;
+        }
+        
         go.transform.SetParent(transform);
         go.transform.position = Vector3.forward * spawnZ;
         spawnZ += tileLength;
+        activeTiles.Add(go);
+    }
+
+    private void DeleteTile()
+    {
+        Destroy(activeTiles[0]);
+        activeTiles.RemoveAt(0);
+
+    }
+
+    private int RandomPrefabIndex()
+    {
+        if (tilePrefabs.Length <= 1)
+            return 0;
+
+        int randomIndex = lastPrefabIndex;
+        while(randomIndex == lastPrefabIndex)
+        {
+            randomIndex = Random.Range(0, tilePrefabs.Length);
+        }
+
+        lastPrefabIndex = randomIndex;
+        return randomIndex;
     }
 }
