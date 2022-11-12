@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMotor : MonoBehaviour
 {
+    // Varaibles
     private Transform lookAt;
     private Vector3 startOffset;
     private Vector3 moveVector;
@@ -14,13 +15,15 @@ public class CameraMotor : MonoBehaviour
 
     void Start()
     {
+        // Set camera start location and player follow
         lookAt = GameObject.FindGameObjectWithTag("Player").transform;
         startOffset = transform.position - lookAt.position;
     }
 
-    // Update is called once per frame
+    
     void LateUpdate()
     {
+        // Fix camera position while following
         moveVector = lookAt.position + startOffset;
 
         // x
@@ -29,13 +32,14 @@ public class CameraMotor : MonoBehaviour
         // y
         moveVector.y = Mathf.Clamp(moveVector.y, 3, 5);
 
+        // Animation at start of game
         if (transition > 1.0f)
         {
             transform.position = moveVector;
         }
         else
         {
-            // Animation at start of game
+           
             transform.position = Vector3.Lerp(moveVector + animationOffset, moveVector, transition);
             transition += Time.deltaTime * 1 / animationDuration;
             transform.LookAt(lookAt.position + Vector3.up);

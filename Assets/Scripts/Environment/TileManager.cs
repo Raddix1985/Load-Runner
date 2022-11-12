@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
+    // Variables
     public GameObject[] tilePrefabs;
 
     private Transform playerTransform;
@@ -13,14 +14,17 @@ public class TileManager : MonoBehaviour
     private float safeZone = 18.0f;
     private int lastPrefabIndex = 0;
 
+    // Tiles prefab
     private List<GameObject> activeTiles;
 
     
     void Start()
     {
+        // Spawn tiles as player moves
         activeTiles = new List<GameObject>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
+        // Number of tiles to spawn
         for (int i = 0; i < amountOfTiles; i++)
         {
             if (i < 2)
@@ -32,7 +36,7 @@ public class TileManager : MonoBehaviour
       
     }
 
-    // Update is called once per frame
+    // Set span and delete tile method
     void Update()
     {
         if (playerTransform.position.z - safeZone > (spawnZ - amountOfTiles * tileLength))
@@ -42,6 +46,7 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    // Spawn tiles method as per player position
     private void SpawnTile(int prefabIndex = -1)
     {
         GameObject go;
@@ -60,6 +65,7 @@ public class TileManager : MonoBehaviour
         activeTiles.Add(go);
     }
 
+    // Delete tiles after player has passed
     private void DeleteTile()
     {
         Destroy(activeTiles[0]);
@@ -67,6 +73,7 @@ public class TileManager : MonoBehaviour
 
     }
 
+    // Randomise spawned tiles
     private int RandomPrefabIndex()
     {
         if (tilePrefabs.Length <= 1)

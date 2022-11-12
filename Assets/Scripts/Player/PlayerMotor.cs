@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
+    // variables
     private CharacterController controller;
     private Vector3 moveVector;
 
@@ -15,12 +16,14 @@ public class PlayerMotor : MonoBehaviour
 
     void Start()
     {
+        // Get player object
         controller = GetComponent<CharacterController>();
     }
 
     
     void Update()
     {
+        // Set Player start animation position
        if(Time.time < animationDuration)
         {
            controller.Move(Vector3.forward * speed * Time.deltaTime);
@@ -28,7 +31,7 @@ public class PlayerMotor : MonoBehaviour
         }
 
            moveVector = Vector3.zero;
-
+        // Check if player is grounded and set gravity
         if (controller.isGrounded)
         {
             verticalVelocity = -0.0f;
@@ -38,6 +41,8 @@ public class PlayerMotor : MonoBehaviour
             verticalVelocity -= gravity * Time.deltaTime;
         }
         
+        // Player movement
+
         // x - left and right
         moveVector.x = Input.GetAxisRaw("Horizontal");
 
