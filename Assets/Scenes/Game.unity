@@ -224,42 +224,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &614878136 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3252226534597068776, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
-  m_PrefabInstance: {fileID: 6774495601412183825}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &614878141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614878136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0ca0f2b1e0d5214d8de312351adc8f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1740306721}
---- !u!143 &614878146
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614878136}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.67
-  m_Radius: 0.23
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.74, z: 0.09}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,17 +696,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 614878141, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1740306721}
     - target: {fileID: 1979722456076973563, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1979722456076973563, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1979722456076973563, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1979722456076973563, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -787,26 +747,6 @@ PrefabInstance:
     - target: {fileID: 3252226534597068776, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Height
-      value: 1.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Radius
-      value: 0.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.y
-      value: 0.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.z
-      value: 0.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
