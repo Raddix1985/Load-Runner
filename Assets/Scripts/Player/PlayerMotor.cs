@@ -8,11 +8,15 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController controller;
     private Vector3 moveVector;
 
+    private float jumpForce = 4.0f;
     private float speed = 3.0f;
     private float verticalVelocity = 0.0f;
     private float gravity = 12.0f;
+    
 
     private float animationDuration = 3.0f;
+
+    private bool isDead = false;
 
     void Start()
     {
@@ -23,6 +27,9 @@ public class PlayerMotor : MonoBehaviour
     
     void Update()
     {
+        if (isDead)
+            return;
+
         // Set Player start animation position
        if(Time.time < animationDuration)
         {
@@ -40,6 +47,8 @@ public class PlayerMotor : MonoBehaviour
         {
             verticalVelocity -= gravity * Time.deltaTime;
         }
+
+      
         
         // Player movement
 
@@ -53,5 +62,27 @@ public class PlayerMotor : MonoBehaviour
         moveVector.z = speed;
 
         controller.Move(moveVector * speed * Time.deltaTime);
+    }
+
+  
+
+    public void SetSpeed(float modifier)
+    {
+        speed = 3.0f + modifier;
+    }
+
+    // Being called everytime player hits an obstacle
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+       if (hit.point.z > transform.position.z + controller.radius + 0.1f && hit.gameObject.tag == "Obstacle")
+        {
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+        isDead = true;
+        GetComponent<Score>().OnDeath();
     }
 }
