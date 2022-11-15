@@ -242,6 +242,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1740306721}
+--- !u!143 &614878146
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614878136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.67
+  m_Radius: 0.23
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.74, z: 0.09}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,25 +788,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6774495600523169952, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Height
-      value: 1.64
+      value: 1.73
       objectReference: {fileID: 0}
-    - target: {fileID: 6774495600523169952, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Radius
-      value: 0.34
+      value: 0.22
       objectReference: {fileID: 0}
-    - target: {fileID: 6774495600523169952, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Center.x
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
-    - target: {fileID: 6774495600523169952, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Center.y
-      value: 0.85
+      value: 0.73
       objectReference: {fileID: 0}
-    - target: {fileID: 6774495600523169952, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Center.z
-      value: 0
+      value: 0.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
