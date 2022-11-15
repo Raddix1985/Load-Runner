@@ -700,6 +700,22 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1740306721}
+    - target: {fileID: 614878146, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Height
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 614878146, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Radius
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 614878146, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Center.y
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 614878146, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Center.z
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 1979722456076973563, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
       propertyPath: m_RootOrder
       value: 2

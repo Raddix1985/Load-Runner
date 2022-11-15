@@ -39,9 +39,9 @@ public class PlayerMotor : MonoBehaviour
 
            moveVector = Vector3.zero;
         // Check if player is grounded and set gravity
-        if (controller.isGrounded)
+        if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            verticalVelocity = -0.0f;
+            verticalVelocity = jumpForce;
         }
         else
         {
@@ -77,6 +77,7 @@ public class PlayerMotor : MonoBehaviour
        if (hit.point.z > transform.position.z + controller.radius + 0.1f && hit.gameObject.tag == "Obstacle")
         {
             Death();
+            Debug.Log("Death");
         }
     }
 
