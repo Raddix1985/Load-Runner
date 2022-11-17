@@ -15,6 +15,7 @@ public class Score : MonoBehaviour
     public Text scoreText;
 
     private bool  isDead = false;
+    public DeathMenu deathMenu;
 
     void Update()
     {
@@ -45,5 +46,9 @@ public class Score : MonoBehaviour
     public void OnDeath()
     {
         isDead = true;
+        if (PlayerPrefs.GetFloat("HighScore") < score)
+            PlayerPrefs.SetFloat("HighScore", score);
+
+        deathMenu.ToggleEndMenu(score);
     }
 }
