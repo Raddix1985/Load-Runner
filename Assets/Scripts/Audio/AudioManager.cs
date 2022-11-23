@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
 
         foreach (Sound s in sounds)
         {
-            Debug.Log("Hello " + s.name);
+            // Debug.Log("Sound → " + s.name);
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.volume = s.volume;
@@ -31,34 +31,6 @@ public class AudioManager : MonoBehaviour
 
         PlaySound("MainTheme");
         Debug.Log("MainTheme Playing");
-
-
-    }
-    void Start()
-    {
-        // if (instance == null)
-        // {
-        //     instance = this;
-        //     DontDestroyOnLoad(gameObject);
-        // }
-        // else
-        // {
-        //     Destroy(gameObject);
-        //     return;
-        // }
-
-        // foreach (Sound s in sounds)
-        // {
-        //     Debug.Log("Hello " + s.name);
-        //     s.source = gameObject.AddComponent<AudioSource>();
-        //     s.source.clip = s.clip;
-        //     s.source.volume = s.volume;
-        //     s.source.loop = s.loop;
-        //     s.source.pitch = s.pitch;
-        // }
-
-        PlaySound("MainTheme");
-        Debug.Log("MainTheme Playing2");
 
 
     }
