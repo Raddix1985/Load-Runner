@@ -65,6 +65,7 @@ public class PlayerMotor : MonoBehaviour
             FindObjectOfType<AudioManager>().PlaySound("Jump");
             verticalVelocity = jumpForce;
 
+
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
         else
@@ -127,6 +128,7 @@ public class PlayerMotor : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().PlaySound("GameOver");
             Death();
+
             // FindObjectOfType<AudioManager>().PlaySound("GameOver");
 
             Debug.Log("Death");
