@@ -29,12 +29,19 @@ public class PlayerMotor : MonoBehaviour
     private bool isRunning;
 
     public static int numOfPower;
+    public AudioClip crashSound;
+    public AudioClip jumpSound;
+    private AudioSource playerAudio;
+    public AudioClip powerSound;
+
+    
 
     void Start()
     {
         // Get player object
         controller = GetComponent<CharacterController>();
         numOfPower = 0;
+        playerAudio = GetComponent<AudioSource>();
     }
 
     
@@ -56,6 +63,7 @@ public class PlayerMotor : MonoBehaviour
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             verticalVelocity = jumpForce;
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
         else
         {
@@ -119,11 +127,19 @@ public class PlayerMotor : MonoBehaviour
             Debug.Log("Death");
         }
     }
+    private void OnTriggerEnter(Collider hit)
+    {
+        if (hit.gameObject.tag == "Power")
+        {
+            playerAudio.PlayOneShot(powerSound, 1.0f);
+        }
+    }
 
     //Score on death
     private void Death()
     {
         isDead = true;
         GetComponent<Score>().OnDeath();
+        playerAudio.PlayOneShot(crashSound, 1.0f);
     }
 }
