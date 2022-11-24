@@ -11,9 +11,9 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController controller;
     
 
-    private float jumpForce = 4.0f;
+    private float jumpForce = 6.0f;
     private float verticalVelocity;
-    private float gravity = 12.0f;
+    private float gravity = -10.0f;
     private int desiredLane = 1; // 0 = left, 1 = middle, 2 = right
 
     // speed modifier
@@ -47,6 +47,11 @@ public class PlayerMotor : MonoBehaviour
     
     void Update()
     {
+        verticalVelocity += gravity * Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
         
         if (isDead)
             return;
@@ -59,19 +64,7 @@ public class PlayerMotor : MonoBehaviour
         }
 
            
-        // Check if player is grounded and set gravity
-        if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            FindObjectOfType<AudioManager>().PlaySound("Jump");
-            verticalVelocity = jumpForce;
-
-
-            playerAudio.PlayOneShot(jumpSound, 1.0f);
-        }
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime;
-        }
+    
 
         // get inputs on which lane we should be
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -89,7 +82,7 @@ public class PlayerMotor : MonoBehaviour
         // Player movement and move delta
         Vector3 moveVector = Vector3.zero;
         moveVector.x = (targetPosition - transform.position).normalized.x * speed;
-        moveVector.y = -0.1f;
+        moveVector.y = verticalVelocity;
         moveVector.z = speed;
 
         controller.Move(moveVector * Time.deltaTime);
@@ -126,16 +119,21 @@ public class PlayerMotor : MonoBehaviour
     {
        if (hit.point.z > transform.position.z + controller.radius + 0.1f && hit.gameObject.tag == "Obstacle")
         {
-            FindObjectOfType<AudioManager>().PlaySound("GameOver");
-            Death();
-
-            // FindObjectOfType<AudioManager>().PlaySound("GameOver");
-
-            Debug.Log("Death");
+           Death();
+           FindObjectOfType<AudioManager>().PlaySound("GameOver");
         }
     }
+    // Jump method
+    private void Jump()
+    {
+        verticalVelocity = jumpForce;
+        playerAudio.PlayOneShot(jumpSound, 1.0f);
+    }
+
+    // Collectable method
     private void OnTriggerEnter(Collider hit)
     {
+       
         if (hit.gameObject.tag == "Power")
         {
             playerAudio.PlayOneShot(powerSound, 1.0f);
@@ -147,6 +145,6 @@ public class PlayerMotor : MonoBehaviour
     {
         isDead = true;
         GetComponent<Score>().OnDeath();
- playerAudio.PlayOneShot(crashSound, 1.0f);
+        playerAudio.PlayOneShot(crashSound, 1.0f);
     }
 }

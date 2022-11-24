@@ -16,7 +16,7 @@ public class Power : MonoBehaviour
     {
         transform.Rotate( 0, rotateSpeed, 0 * Time.deltaTime);
     }
-
+     // trigger collection of power 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
