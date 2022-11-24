@@ -4,29 +4,43 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
+    private const float LANE_DISTANCE = 3.0f;
+    private const float TURN_SPEED = 0.2f;
+
     // variables
     private CharacterController controller;
-    private Vector3 moveVector;
+    
 
     private float jumpForce = 4.0f;
-    private float speed = 3.0f;
-    private float verticalVelocity = 0.0f;
+    private float verticalVelocity;
     private float gravity = 12.0f;
-    
+    private int desiredLane = 1; // 0 = left, 1 = middle, 2 = right
+
+    // speed modifier
+    private float speed = 3.0f;
+    private float speedIncreaseLastTick;
+    private float speedIncreaseTime = 10.0f;
+    private float speedIncreaseAmount = 0.1f;
+
 
     private float animationDuration = 3.0f;
 
     private bool isDead = false;
+    private bool isRunning;
+
+    public static int numOfPower;
 
     void Start()
     {
         // Get player object
         controller = GetComponent<CharacterController>();
+        numOfPower = 0;
     }
 
     
     void Update()
     {
+        
         if (isDead)
             return;
 
@@ -37,7 +51,7 @@ public class PlayerMotor : MonoBehaviour
            return;
         }
 
-           moveVector = Vector3.zero;
+           
         // Check if player is grounded and set gravity
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
@@ -48,27 +62,52 @@ public class PlayerMotor : MonoBehaviour
             verticalVelocity -= gravity * Time.deltaTime;
         }
 
-      
-        
-        // Player movement
+        // get inputs on which lane we should be
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            MoveLane(false);
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            MoveLane(true);
 
-        // x - left and right
-        moveVector.x = Input.GetAxisRaw("Horizontal");
+        // calculate where we should be in future
+        Vector3 targetPosition = transform.position.z * Vector3.forward;
+        if (desiredLane == 0)
+            targetPosition += Vector3.left * LANE_DISTANCE;
+        else if (desiredLane == 2)
+            targetPosition += Vector3.right * LANE_DISTANCE;
 
-        // y = up and down
-        moveVector.y = verticalVelocity;
-
-        //z = forward and backward
+        // Player movement and move delta
+        Vector3 moveVector = Vector3.zero;
+        moveVector.x = (targetPosition - transform.position).normalized.x * speed;
+        moveVector.y = -0.1f;
         moveVector.z = speed;
 
-        controller.Move(moveVector * speed * Time.deltaTime);
+        controller.Move(moveVector * Time.deltaTime);
+
+        // rotate player to where he is going
+        Vector3 dir = controller.velocity;
+        if(dir != Vector3.zero)
+        {
+            dir.y = 0;
+            transform.forward = Vector3.Lerp(transform.forward, dir, TURN_SPEED);
+        }
+        
     }
 
-  
+    // Lane movement
+    private void MoveLane(bool goingright)
+    {
+        desiredLane += (goingright) ? 1 : -1;
+        desiredLane = Mathf.Clamp(desiredLane, 0, 2);
+    }
 
+    // Increase speed
     public void SetSpeed(float modifier)
     {
-        speed = 3.0f + modifier;
+        if (Time.time - speedIncreaseLastTick > speedIncreaseTime)
+        {
+            speedIncreaseLastTick = Time.time;
+            speed += speedIncreaseAmount;
+        }
     }
 
     // Being called everytime player hits an obstacle
@@ -81,6 +120,7 @@ public class PlayerMotor : MonoBehaviour
         }
     }
 
+    //Score on death
     private void Death()
     {
         isDead = true;

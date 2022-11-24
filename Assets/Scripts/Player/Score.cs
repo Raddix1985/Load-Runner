@@ -37,10 +37,10 @@ public class Score : MonoBehaviour
         if (difficultyLevel == maxDifficultyLevel)
             return;
 
-        scoreToNextLevel += 2;
+        scoreToNextLevel *= 2;
         difficultyLevel++;
 
-        GetComponent<PlayerMotor>().SetSpeed(difficultyLevel);
+       GetComponent<PlayerMotor>().SetSpeed(difficultyLevel);
     }
 
     public void OnDeath()
