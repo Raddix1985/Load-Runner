@@ -62,7 +62,10 @@ public class PlayerMotor : MonoBehaviour
         // Check if player is grounded and set gravity
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
+            FindObjectOfType<AudioManager>().PlaySound("Jump");
             verticalVelocity = jumpForce;
+
+
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
         else
@@ -123,7 +126,11 @@ public class PlayerMotor : MonoBehaviour
     {
        if (hit.point.z > transform.position.z + controller.radius + 0.1f && hit.gameObject.tag == "Obstacle")
         {
+            FindObjectOfType<AudioManager>().PlaySound("GameOver");
             Death();
+
+            // FindObjectOfType<AudioManager>().PlaySound("GameOver");
+
             Debug.Log("Death");
         }
     }
