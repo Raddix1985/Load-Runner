@@ -140,6 +140,6 @@ public class PlayerMotor : MonoBehaviour
     {
         isDead = true;
         GetComponent<Score>().OnDeath();
-        playerAudio.PlayOneShot(crashSound, 1.0f);
+ playerAudio.PlayOneShot(crashSound, 1.0f);
     }
 }

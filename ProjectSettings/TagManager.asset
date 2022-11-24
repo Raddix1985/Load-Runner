@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - PlayerEyes
   - Enemy
+  - Power
   layers:
   - Default
   - TransparentFX
