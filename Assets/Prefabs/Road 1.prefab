@@ -488,6 +488,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 86f783457a9659e41a99dc3147fefdba, type: 3}
   m_PrefabInstance: {fileID: 3037961533897189539}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3037961533897289219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 86f783457a9659e41a99dc3147fefdba, type: 3}
+  m_PrefabInstance: {fileID: 3037961533897189539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &8130530526068213963
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3037961533897289219}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &3082153172210892571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1495,6 +1516,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4331763539803959909}
     m_Modifications:
+    - target: {fileID: 1071491981225826, guid: 2dc42346e5313b34c93d598a61994629, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 1646981259178978, guid: 2dc42346e5313b34c93d598a61994629, type: 3}
       propertyPath: m_Name
       value: Car_2
@@ -1509,7 +1534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4870167790249810, guid: 2dc42346e5313b34c93d598a61994629, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.07
+      value: 2.52
       objectReference: {fileID: 0}
     - target: {fileID: 4870167790249810, guid: 2dc42346e5313b34c93d598a61994629, type: 3}
       propertyPath: m_LocalPosition.z

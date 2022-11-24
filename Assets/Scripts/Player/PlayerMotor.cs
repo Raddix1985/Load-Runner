@@ -67,9 +67,9 @@ public class PlayerMotor : MonoBehaviour
     
 
         // get inputs on which lane we should be
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetKeyDown(KeyCode.A)))
             MoveLane(false);
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetKeyDown(KeyCode.D)))
             MoveLane(true);
 
         // calculate where we should be in future

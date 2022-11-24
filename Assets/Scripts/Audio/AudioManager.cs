@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
         }
 
         PlaySound("MainTheme");
-        Debug.Log("MainTheme Playing");
+        //Debug.Log("MainTheme Playing");
 
 
     }
