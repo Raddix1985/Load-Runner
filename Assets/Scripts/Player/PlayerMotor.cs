@@ -34,7 +34,7 @@ public class PlayerMotor : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip powerSound;
 
-    
+
 
     void Start()
     {
@@ -145,6 +145,7 @@ public class PlayerMotor : MonoBehaviour
     {
         isDead = true;
         GetComponent<Score>().OnDeath();
+        FindObjectOfType<AudioManager>().Stop("MainTheme");
         playerAudio.PlayOneShot(crashSound, 1.0f);
     }
 }

@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
         }
 
         PlaySound("MainTheme");
-        //Debug.Log("MainTheme Playing");
+        // Debug.Log("MainTheme Playing");
 
 
     }
@@ -41,6 +41,23 @@ public class AudioManager : MonoBehaviour
         {
             if (s.name == name)
                 s.source.Play();
+        }
+    }
+
+     public void Stop (string name)
+    {
+
+        foreach (Sound s in sounds)
+        {
+            if (s.name == null)
+            {
+                Debug.LogWarning("Sound: " + name + " not found!");
+                return;
+            }
+            
+            if (s.name == name)
+
+                s.source.Stop();
         }
     }
 }
