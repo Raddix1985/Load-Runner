@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     private const float LANE_DISTANCE = 3.0f;
-    private const float TURN_SPEED = 0.2f;
+    private const float TURN_SPEED = 35.0f;
 
     // variables
     private CharacterController controller;
@@ -18,9 +18,7 @@ public class PlayerMotor : MonoBehaviour
 
     // speed modifier
     private float speed = 3.0f;
-    private float speedIncreaseLastTick;
-    private float speedIncreaseTime = 10.0f;
-    private float speedIncreaseAmount = 0.1f;
+
 
 
     private float animationDuration = 3.0f;
@@ -107,17 +105,13 @@ public class PlayerMotor : MonoBehaviour
     // Increase speed
     public void SetSpeed(float modifier)
     {
-        if (Time.time - speedIncreaseLastTick > speedIncreaseTime)
-        {
-            speedIncreaseLastTick = Time.time;
-            speed += speedIncreaseAmount;
-        }
+        speed = 5.0f + modifier;
     }
 
     // Being called everytime player hits an obstacle
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-       if (hit.point.z > transform.position.z + controller.radius + 0.1f && hit.gameObject.tag == "Obstacle")
+       if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Obstacle")
         {
            Death();
            FindObjectOfType<AudioManager>().PlaySound("GameOver");
