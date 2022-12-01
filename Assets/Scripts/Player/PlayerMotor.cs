@@ -46,7 +46,7 @@ public class PlayerMotor : MonoBehaviour
     void Update()
     {
         verticalVelocity += gravity * Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (MobileInput.Instance.SwipeUp)
         {
             Jump();
         }
@@ -65,9 +65,9 @@ public class PlayerMotor : MonoBehaviour
     
 
         // get inputs on which lane we should be
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetKeyDown(KeyCode.A)))
+        if (MobileInput.Instance.SwipeRight)
             MoveLane(false);
-        if (Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetKeyDown(KeyCode.D)))
+        if (MobileInput.Instance.SwipeLeft)
             MoveLane(true);
 
         // calculate where we should be in future
@@ -120,6 +120,7 @@ public class PlayerMotor : MonoBehaviour
     // Jump method
     private void Jump()
     {
+        //anim.SetTrigger("Jump");
         verticalVelocity = jumpForce;
         playerAudio.PlayOneShot(jumpSound, 1.0f);
     }
