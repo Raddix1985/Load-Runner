@@ -9,7 +9,7 @@ public class MobileInput : MonoBehaviour
     public static MobileInput Instance { get; set; }
 
     // swipe variables
-    private bool tap, swipeLeft, swipeRight, swipeUp;
+    private bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
     private Vector2 swipeDelta, startTouch;
 
     public bool Tap { get { return tap; } }
@@ -17,6 +17,8 @@ public class MobileInput : MonoBehaviour
     public bool SwipeLeft { get { return swipeLeft; } }
     public bool SwipeRight { get { return swipeRight; } }
     public bool SwipeUp { get { return swipeUp; } }
+    public bool SwipeDown { get { return swipeDown; } }
+  
 
     private void Awake()
     {
@@ -26,7 +28,7 @@ public class MobileInput : MonoBehaviour
     private void Update()
     {
         // resetting booleans
-        tap = swipeLeft = swipeRight = swipeUp = false;
+        tap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
 
         // check for inputs
 
@@ -86,18 +88,20 @@ public class MobileInput : MonoBehaviour
             float x = swipeDelta.x;
             float y = swipeDelta.y;
 
-            if(Mathf.Abs(x) > Mathf.Abs(y))
+            if (Mathf.Abs(x) > Mathf.Abs(y))
             {
                 // Left or Right
-                if (x < 0)
+                if (x > 0)
                     swipeLeft = true;
                 else
                     swipeRight = true;
             }
-            else
+             
             {
                 // up 
                 if (y < 0)
+                    swipeDown = true;
+                else 
                     swipeUp = true;
             }
 
