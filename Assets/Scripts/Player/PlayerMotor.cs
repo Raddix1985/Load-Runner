@@ -45,18 +45,15 @@ public class PlayerMotor : MonoBehaviour
     
     void Update()
     {
-
-        if (controller.isGrounded)
-        {
             verticalVelocity += gravity * Time.deltaTime;
 
-            if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space))
+            if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
             {
                 Jump();
 
             }
 
-        }   
+          
        
         
         if (isDead)
