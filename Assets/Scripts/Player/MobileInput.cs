@@ -27,6 +27,7 @@ public class MobileInput : MonoBehaviour
 
     private void Update()
     {
+       
         // resetting booleans
         tap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
 
@@ -54,7 +55,7 @@ public class MobileInput : MonoBehaviour
             if(Input.touches[0].phase == TouchPhase.Began)
             {
                 tap = true;
-                startTouch = Input.mousePosition;
+                startTouch = Input.touches[0].position;
             }
             else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
             {

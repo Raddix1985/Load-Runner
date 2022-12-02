@@ -24,7 +24,7 @@ public class PlayerMotor : MonoBehaviour
     private float animationDuration = 3.0f;
 
     private bool isDead = false;
-    private bool isOnGround;
+    
 
     public static int numOfPower;
     public AudioClip crashSound;
@@ -38,7 +38,6 @@ public class PlayerMotor : MonoBehaviour
     {
         // Get player object
         controller = GetComponent<CharacterController>();
-        isOnGround = true;
         numOfPower = 0;
         playerAudio = GetComponent<AudioSource>();
     }
@@ -46,17 +45,19 @@ public class PlayerMotor : MonoBehaviour
     
     void Update()
     {
-        
-        if (isOnGround && MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-           
-        }
-        else
+
+        if (controller.isGrounded)
         {
             verticalVelocity += gravity * Time.deltaTime;
-     
-        }
+
+            if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+
+            }
+
+        }   
+       
         
         if (isDead)
             return;
@@ -72,9 +73,9 @@ public class PlayerMotor : MonoBehaviour
     
 
         // get inputs on which lane we should be
-        if (MobileInput.Instance.SwipeRight || Input.GetKeyDown(KeyCode.D))
+        if (MobileInput.Instance.SwipeRight || Input.GetKeyDown(KeyCode.A))
             MoveLane(false);
-        if (MobileInput.Instance.SwipeLeft || Input.GetKeyDown(KeyCode.A))
+        if (MobileInput.Instance.SwipeLeft || Input.GetKeyDown(KeyCode.D))
             MoveLane(true);
 
         // calculate where we should be in future
@@ -94,6 +95,7 @@ public class PlayerMotor : MonoBehaviour
 
         // rotate player to where he is going
         Vector3 dir = controller.velocity;
+       
         if(dir != Vector3.zero)
         {
             dir.y = 0;
