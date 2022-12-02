@@ -9,7 +9,8 @@ public class PlayerMotor : MonoBehaviour
 
     // variables
     private CharacterController controller;
-    
+
+    public static int numOfPower;
 
     private float jumpForce = 6.0f;
     private float verticalVelocity;
@@ -24,9 +25,7 @@ public class PlayerMotor : MonoBehaviour
     private float animationDuration = 3.0f;
 
     private bool isDead = false;
-    
 
-    public static int numOfPower;
     public AudioClip crashSound;
     public AudioClip jumpSound;
     private AudioSource playerAudio;

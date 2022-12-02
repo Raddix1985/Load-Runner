@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
+    public Text energyText;
     public Text scoreText;
     public Image backgroundImg;
     private bool isShowned = false;

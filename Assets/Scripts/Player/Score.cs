@@ -7,12 +7,14 @@ public class Score : MonoBehaviour
 {
     // Variables
     private float score = 0.0f;
+    public int energy;
 
     private int difficultyLevel = 1;
     private int maxDifficultyLevel = 5;
     private int scoreToNextLevel = 10;
 
     public Text scoreText;
+    public Text energyText;
 
     private bool  isDead = false;
     public DeathMenu deathMenu;
@@ -29,6 +31,8 @@ public class Score : MonoBehaviour
         // Display score on screen
         score += Time.deltaTime * difficultyLevel;
         scoreText.text = ((int)score).ToString();
+        energy = PlayerMotor.numOfPower;
+        energyText.text = ((int)energy).ToString();
     }
 
     // Increase game speed and difficulty

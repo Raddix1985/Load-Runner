@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Power : MonoBehaviour
+public class Energy : MonoBehaviour
 {
     private float rotateSpeed = 2.5f;
     // Start is called before the first frame update
@@ -22,6 +22,7 @@ public class Power : MonoBehaviour
         if(other.tag == "Player")
         {
             PlayerMotor.numOfPower += 1;
+            Debug.Log("Power:" + PlayerMotor.numOfPower);
             Destroy(gameObject);
         }
 
