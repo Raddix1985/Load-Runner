@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-    private const float LANE_DISTANCE = 3.0f;
+    private const float LANE_DISTANCE = 2.4f;
     private const float TURN_SPEED = 35.0f;
 
     // variables
@@ -18,7 +18,7 @@ public class PlayerMotor : MonoBehaviour
     private int desiredLane = 1; // 0 = left, 1 = middle, 2 = right
 
     // speed modifier
-    private float speed = 3.0f;
+    private float speed = 6.0f;
 
 
 
@@ -110,7 +110,7 @@ public class PlayerMotor : MonoBehaviour
     // Increase speed
     public void SetSpeed(float modifier)
     {
-        speed = 5.0f + modifier;
+        speed = 6.0f + modifier;
     }
 
     // Being called everytime player hits an obstacle

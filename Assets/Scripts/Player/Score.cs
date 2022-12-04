@@ -10,7 +10,7 @@ public class Score : MonoBehaviour
     public int energy;
 
     private int difficultyLevel = 1;
-    private int maxDifficultyLevel = 5;
+    private int maxDifficultyLevel = 20;
     private int scoreToNextLevel = 10;
 
     public Text scoreText;
