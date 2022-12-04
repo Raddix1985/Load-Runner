@@ -9,6 +9,7 @@ public class PlayerMotor : MonoBehaviour
 
     // variables
     private CharacterController controller;
+    private Animator anim;
 
     public static int numOfPower;
 
@@ -25,6 +26,9 @@ public class PlayerMotor : MonoBehaviour
     private float animationDuration = 3.0f;
 
     private bool isDead = false;
+    
+    
+
 
     public AudioClip crashSound;
     public AudioClip jumpSound;
@@ -35,6 +39,8 @@ public class PlayerMotor : MonoBehaviour
 
     void Start()
     {
+        GetComponent<Animator>();
+        
         // Get player object
         controller = GetComponent<CharacterController>();
         numOfPower = 0;
@@ -49,6 +55,7 @@ public class PlayerMotor : MonoBehaviour
             if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
             {
                 Jump();
+                
 
             }
 
@@ -92,7 +99,7 @@ public class PlayerMotor : MonoBehaviour
         // rotate player to where he is going
         Vector3 dir = controller.velocity;
        
-        if(dir != Vector3.zero)
+        if (dir != Vector3.zero)
         {
             dir.y = 0;
             transform.forward = Vector3.Lerp(transform.forward, dir, TURN_SPEED);
@@ -127,7 +134,7 @@ public class PlayerMotor : MonoBehaviour
     {
         
         {
-            //anim.SetTrigger("Jump");
+            anim.SetTrigger("Jump");
             verticalVelocity = jumpForce;
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
@@ -148,6 +155,7 @@ public class PlayerMotor : MonoBehaviour
     private void Death()
     {
         isDead = true;
+        anim.SetBool("isDead", true);
         GetComponent<Score>().OnDeath();
         FindObjectOfType<AudioManager>().Stop("MainTheme");
         playerAudio.PlayOneShot(crashSound, 1.0f);

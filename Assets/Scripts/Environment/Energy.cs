@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
-    private float rotateSpeed = 2.5f;
+    private float rotateSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,7 @@ public class Energy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rotateSpeed = Random.Range(0.5f, 1.5f);
         transform.Rotate( 0, rotateSpeed, 0 * Time.deltaTime);
     }
      // trigger collection of power 
@@ -22,7 +23,6 @@ public class Energy : MonoBehaviour
         if(other.tag == "Player")
         {
             PlayerMotor.numOfPower += 1;
-            Debug.Log("Power:" + PlayerMotor.numOfPower);
             Destroy(gameObject);
         }
 
