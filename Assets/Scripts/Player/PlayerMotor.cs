@@ -57,7 +57,6 @@ public class PlayerMotor : MonoBehaviour
             if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
             {
                 Jump();
-                Debug.Log("grounded" + !controller.isGrounded);
                 anim.SetTrigger("Jump_trig");
 
             }
