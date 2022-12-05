@@ -27,7 +27,7 @@ public class PlayerMotor : MonoBehaviour
 
     private bool isDead = false;
     
-    
+
 
 
     public AudioClip crashSound;
@@ -50,12 +50,15 @@ public class PlayerMotor : MonoBehaviour
     
     void Update()
     {
-            verticalVelocity += gravity * Time.deltaTime;
+        bool isGrounded = controller.isGrounded;
+
+        verticalVelocity += gravity * Time.deltaTime;
 
             if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
             {
                 Jump();
-                
+                Debug.Log("grounded" + !controller.isGrounded);
+                anim.SetTrigger("Jump_trig");
 
             }
 
@@ -134,7 +137,7 @@ public class PlayerMotor : MonoBehaviour
     {
         
         {
-            anim.SetTrigger("Jump");
+            
             verticalVelocity = jumpForce;
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
@@ -155,7 +158,7 @@ public class PlayerMotor : MonoBehaviour
     private void Death()
     {
         isDead = true;
-        anim.SetBool("isDead", true);
+        //anim.SetBool("isDead", true);
         GetComponent<Score>().OnDeath();
         FindObjectOfType<AudioManager>().Stop("MainTheme");
         playerAudio.PlayOneShot(crashSound, 1.0f);
