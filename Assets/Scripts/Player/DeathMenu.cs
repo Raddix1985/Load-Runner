@@ -10,7 +10,7 @@ public class DeathMenu : MonoBehaviour
     public Text scoreText;
     public Image backgroundImg;
     private bool isShowned = false;
-    private float transition = 0.0f;
+    private float transition = -3.0f;
 
 
     // Start is called before the first frame update

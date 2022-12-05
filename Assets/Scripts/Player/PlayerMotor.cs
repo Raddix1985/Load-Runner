@@ -39,7 +39,7 @@ public class PlayerMotor : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         
         // Get player object
         controller = GetComponent<CharacterController>();
@@ -56,26 +56,31 @@ public class PlayerMotor : MonoBehaviour
 
             if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
             {
-                Jump();
-                anim.SetTrigger("Jump_trig");
+            anim.SetTrigger("Jump_Trig");
+            Jump();
+            
 
             }
 
-          
-       
-        
+
+
+
         if (isDead)
+        {
+            anim.SetBool("isDead", true);
             return;
+        }
+            
 
         // Set Player start animation position
-       if(Time.time < animationDuration)
+       if (Time.time < animationDuration)
         {
            controller.Move(Vector3.forward * speed * Time.deltaTime);
            return;
         }
 
-           
-    
+
+
 
         // get inputs on which lane we should be
         if (MobileInput.Instance.SwipeRight || Input.GetKeyDown(KeyCode.A))
@@ -156,8 +161,7 @@ public class PlayerMotor : MonoBehaviour
     //Score on death
     private void Death()
     {
-        isDead = true;
-        //anim.SetBool("isDead", true);
+        isDead = true;     
         GetComponent<Score>().OnDeath();
         FindObjectOfType<AudioManager>().Stop("MainTheme");
         playerAudio.PlayOneShot(crashSound, 1.0f);
