@@ -26,9 +26,9 @@ public class PlayerMotor : MonoBehaviour
     private float animationDuration = 3.0f;
 
     private bool isDead = false;
-    
 
 
+    public ParticleSystem crashParticle;
 
     public AudioClip crashSound;
     public AudioClip jumpSound;
@@ -133,6 +133,7 @@ public class PlayerMotor : MonoBehaviour
        if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Obstacle")
         {
            Death();
+            crashParticle.Play();
            FindObjectOfType<AudioManager>().PlaySound("GameOver");
         }
     }
