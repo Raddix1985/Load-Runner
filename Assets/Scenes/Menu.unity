@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011303438, g: 0.020770222, b: 0.07275247, a: 1}
+  m_IndirectSpecularColor: {r: 0.011134084, g: 0.020988865, b: 0.073385805, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.71167, y: -124.62502}
-  m_SizeDelta: {x: 397.0195, y: 382.3251}
+  m_AnchoredPosition: {x: -3.71167, y: -124.88564}
+  m_SizeDelta: {x: 397.0195, y: 502.1509}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94405186
 MonoBehaviour:
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -185,7 +185,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 35
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 1
@@ -194,8 +194,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Welcome to Load Runner!.\n\nHow to play: \nCollect energy while avoiding
-    the obstacles by swiping left or right or jumping. See how far you can get!"
+  m_Text: "Welcome to Load Runner!\n\nHow to play: \nCollect energy and avoid obstacles
+    by swiping left, right or jumping. \n\nSee how far you can get!"
 --- !u!222 &94405187
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -66.7, y: 112.1}
+  m_AnchoredPosition: {x: -66.7, y: 162}
   m_SizeDelta: {x: 200, y: 164}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &322989011
@@ -622,8 +622,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 259, y: 15}
-  m_SizeDelta: {x: -344.7093, y: -66.8873}
+  m_AnchoredPosition: {x: 249, y: -54}
+  m_SizeDelta: {x: -336.3682, y: -475.8954}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &766507165
 MonoBehaviour:
@@ -956,7 +956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 6.984998}
+  m_AnchoredPosition: {x: 0, y: 7}
   m_SizeDelta: {x: 0, y: 13.970004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1203090475
