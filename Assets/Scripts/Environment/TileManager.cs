@@ -36,7 +36,7 @@ public class TileManager : MonoBehaviour
       
     }
 
-    // Set span and delete tile method
+    // Set spawn and delete tile method
     void Update()
     {
         if (playerTransform.position.z - safeZone > (spawnZ - amountOfTiles * tileLength))

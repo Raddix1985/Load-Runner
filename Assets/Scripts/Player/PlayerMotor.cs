@@ -10,6 +10,7 @@ public class PlayerMotor : MonoBehaviour
     // variables
     private CharacterController controller;
     private Animator anim;
+    private MobileInput mobileInput;
 
     public static int numOfPower;
 
@@ -22,10 +23,12 @@ public class PlayerMotor : MonoBehaviour
     private float speed = 6.0f;
 
 
+    public GameObject startText;
+   
 
-    private float animationDuration = 3.0f;
-
+    public static bool isGameStarted;
     private bool isDead = false;
+    private bool isRunning; 
 
 
     public ParticleSystem crashParticle;
@@ -39,29 +42,40 @@ public class PlayerMotor : MonoBehaviour
 
     void Start()
     {
+        isGameStarted = false;
+        isRunning = true;
         anim = GetComponent<Animator>();
         
         // Get player object
         controller = GetComponent<CharacterController>();
         numOfPower = 0;
         playerAudio = GetComponent<AudioSource>();
+        mobileInput = GetComponent<MobileInput>();
     }
 
     
     void Update()
     {
-        bool isGrounded = controller.isGrounded;
+
 
         verticalVelocity += gravity * Time.deltaTime;
 
-            if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
-            {
-            anim.SetTrigger("Jump_Trig");
+        if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
+            {  
             Jump();
-            
+            isRunning = false;
+            anim.SetTrigger("Jump_Trig");
+
 
             }
 
+        if (mobileInput.Tap)
+        {
+            isGameStarted = true;
+            
+            Destroy(startText);
+            anim.SetBool("isGameStarted", true);
+        }
 
 
 
@@ -70,19 +84,18 @@ public class PlayerMotor : MonoBehaviour
             anim.SetBool("isDead", true);
             return;
         }
-            
 
-        // Set Player start animation position
-       if (Time.time < animationDuration)
-        {
-           controller.Move(Vector3.forward * speed * Time.deltaTime);
-           return;
-        }
+
 
 
 
 
         // get inputs on which lane we should be
+        if (!isGameStarted)
+        {
+            return;
+        }
+
         if (MobileInput.Instance.SwipeRight || Input.GetKeyDown(KeyCode.A))
             MoveLane(false);
         if (MobileInput.Instance.SwipeLeft || Input.GetKeyDown(KeyCode.D))
