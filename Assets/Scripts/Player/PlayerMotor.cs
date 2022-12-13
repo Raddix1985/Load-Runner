@@ -60,7 +60,7 @@ public class PlayerMotor : MonoBehaviour
 
         verticalVelocity += gravity * Time.deltaTime;
 
-        if (MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
+        if (controller.isGrounded && MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
             {  
             Jump();
             isRunning = false;
