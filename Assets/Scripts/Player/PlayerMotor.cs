@@ -20,15 +20,15 @@ public class PlayerMotor : MonoBehaviour
     private int desiredLane = 1; // 0 = left, 1 = middle, 2 = right
 
     // speed modifier
-    private float speed = 6.0f;
-
+    public float speed = 6.0f;
+    public float maxSpeed;
 
     public GameObject startText;
-   
+
 
     public static bool isGameStarted;
     private bool isDead = false;
-    private bool isRunning; 
+    private bool isRunning;
 
 
     public ParticleSystem crashParticle;
@@ -45,7 +45,7 @@ public class PlayerMotor : MonoBehaviour
         isGameStarted = false;
         isRunning = true;
         anim = GetComponent<Animator>();
-        
+
         // Get player object
         controller = GetComponent<CharacterController>();
         numOfPower = 0;
@@ -53,42 +53,44 @@ public class PlayerMotor : MonoBehaviour
         mobileInput = GetComponent<MobileInput>();
     }
 
-    
+
     void Update()
     {
-
+        // Increase speed
+        if (speed < maxSpeed)
+        {
+            speed += 0.1f * Time.deltaTime;
+        }
 
         verticalVelocity += gravity * Time.deltaTime;
 
+        if (MobileInput.Instance.SwipeDown)
+        {
+            StartCoroutine(Slide());
+        }
+
         if (controller.isGrounded && MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
-            {  
+        {
             Jump();
             isRunning = false;
             anim.SetTrigger("Jump_Trig");
 
 
-            }
+        }
 
         if (mobileInput.Tap)
         {
             isGameStarted = true;
-            
+
             Destroy(startText);
             anim.SetBool("isGameStarted", true);
         }
-
-
 
         if (isDead)
         {
             anim.SetBool("isDead", true);
             return;
         }
-
-
-
-
-
 
         // get inputs on which lane we should be
         if (!isGameStarted)
@@ -118,13 +120,13 @@ public class PlayerMotor : MonoBehaviour
 
         // rotate player to where he is going
         Vector3 dir = controller.velocity;
-       
+
         if (dir != Vector3.zero)
         {
             dir.y = 0;
             transform.forward = Vector3.Lerp(transform.forward, dir, TURN_SPEED);
         }
-        
+
     }
 
     // Lane movement
@@ -134,38 +136,32 @@ public class PlayerMotor : MonoBehaviour
         desiredLane = Mathf.Clamp(desiredLane, 0, 2);
     }
 
-    // Increase speed
-    public void SetSpeed(float modifier)
-    {
-        speed = 6.0f + modifier;
-    }
-
     // Being called everytime player hits an obstacle
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-       if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Obstacle")
+        if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Obstacle")
         {
-           Death();
+            Death();
             crashParticle.Play();
-           FindObjectOfType<AudioManager>().PlaySound("GameOver");
+            FindObjectOfType<AudioManager>().PlaySound("GameOver");
         }
     }
     // Jump method
     private void Jump()
     {
-        
+
         {
-            
+
             verticalVelocity = jumpForce;
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
-       
+
     }
 
     // Collectable method
     private void OnTriggerEnter(Collider hit)
     {
-       
+
         if (hit.gameObject.tag == "Power")
         {
             playerAudio.PlayOneShot(powerSound, 1.0f);
@@ -175,9 +171,23 @@ public class PlayerMotor : MonoBehaviour
     //Score on death
     private void Death()
     {
-        isDead = true;     
+        isDead = true;
         GetComponent<Score>().OnDeath();
         FindObjectOfType<AudioManager>().Stop("MainTheme");
         playerAudio.PlayOneShot(crashSound, 1.0f);
     }
+
+    private IEnumerator Slide()
+    {
+        anim.SetBool("isSliding", true);
+
+        yield return new WaitForSeconds(1.3f);
+        
+        anim.SetBool("isSliding", false); 
+    }
+
+    
 }
+    
+
+
