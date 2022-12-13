@@ -29,6 +29,7 @@ public class PlayerMotor : MonoBehaviour
     public static bool isGameStarted;
     private bool isDead = false;
     private bool isRunning;
+    private bool isSlididng = false;
 
 
     public ParticleSystem crashParticle;
@@ -64,7 +65,7 @@ public class PlayerMotor : MonoBehaviour
 
         verticalVelocity += gravity * Time.deltaTime;
 
-        if (MobileInput.Instance.SwipeDown)
+        if (MobileInput.Instance.SwipeDown && !isSlididng)
         {
             StartCoroutine(Slide());
         }
@@ -72,8 +73,8 @@ public class PlayerMotor : MonoBehaviour
         if (controller.isGrounded && MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
         {
             Jump();
-            isRunning = false;
-            anim.SetTrigger("Jump_Trig");
+            
+            
 
 
         }
@@ -87,8 +88,7 @@ public class PlayerMotor : MonoBehaviour
         }
 
         if (isDead)
-        {
-            anim.SetBool("isDead", true);
+        { 
             return;
         }
 
@@ -141,6 +141,7 @@ public class PlayerMotor : MonoBehaviour
     {
         if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Obstacle")
         {
+            Debug.Log("Ouch!");
             Death();
             crashParticle.Play();
             FindObjectOfType<AudioManager>().PlaySound("GameOver");
@@ -148,13 +149,13 @@ public class PlayerMotor : MonoBehaviour
     }
     // Jump method
     private void Jump()
-    {
-
-        {
-
-            verticalVelocity = jumpForce;
-            playerAudio.PlayOneShot(jumpSound, 1.0f);
-        }
+    { 
+        anim.SetTrigger("Jump_Trig");
+        isRunning = false;
+        verticalVelocity = jumpForce;
+        playerAudio.PlayOneShot(jumpSound, 1.0f);
+        verticalVelocity += gravity * Time.deltaTime;
+        
 
     }
 
@@ -171,6 +172,7 @@ public class PlayerMotor : MonoBehaviour
     //Score on death
     private void Death()
     {
+        anim.SetBool("isDead", true);
         isDead = true;
         GetComponent<Score>().OnDeath();
         FindObjectOfType<AudioManager>().Stop("MainTheme");
@@ -179,11 +181,17 @@ public class PlayerMotor : MonoBehaviour
 
     private IEnumerator Slide()
     {
-        anim.SetBool("isSliding", true);
+        isSlididng = true;
 
+        anim.SetBool("isSliding", true);
+        controller.center = new Vector3(0, -0.5f, 0);
+        controller.height = 0f;
         yield return new WaitForSeconds(1.3f);
-        
-        anim.SetBool("isSliding", false); 
+
+        controller.center = new Vector3(0, 0.7f, 0);
+        controller.height = 1.8f;
+        anim.SetBool("isSliding", false);
+        isSlididng = false;
     }
 
     

@@ -1097,6 +1097,8 @@ MonoBehaviour:
   - {fileID: 1351621699467516309, guid: 9fb800d0e1b0df64ab70cedac9af1880, type: 3}
   - {fileID: 4437595911196027939, guid: 58820585f21f6e04aa0ecac0e1c951f1, type: 3}
   - {fileID: 5679876780236586356, guid: 85594e880ecbf804eb0122de8bc85641, type: 3}
+  - {fileID: 2562849669541943724, guid: e59ddb0299f8380438075a8cbf48b720, type: 3}
+  - {fileID: 1677884696751243472, guid: c171ff021bc40ca4eb88e372493a5fd4, type: 3}
 --- !u!4 &1015196262
 Transform:
   m_ObjectHideFlags: 0
@@ -1819,6 +1821,30 @@ PrefabInstance:
       propertyPath: energyText
       value: 
       objectReference: {fileID: 1110608721}
+    - target: {fileID: 614878146, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Height
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614878146, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 614878146, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Center.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614878146, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725169245, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177272788, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1979722456076973563, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1867,6 +1893,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3252226534597068776, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6774495600523169953, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
       propertyPath: maxSpeed
       value: 20
@@ -1875,5 +1905,9 @@ PrefabInstance:
       propertyPath: startText
       value: 
       objectReference: {fileID: 511541546}
+    - target: {fileID: 8499243385868015745, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
