@@ -185,8 +185,8 @@ public class PlayerMotor : MonoBehaviour
         controller.height = 0f;
         yield return new WaitForSeconds(1.0f);
 
-        controller.center = new Vector3(0, 0.7f, 0);
-        controller.height = 1.8f;
+        controller.center = new Vector3(0, 0.8f, 0);
+        controller.height = 1.7f;
         anim.SetBool("isSliding", false);
         isSlididng = false;
     }

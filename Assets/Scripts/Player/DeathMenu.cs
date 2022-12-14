@@ -28,7 +28,7 @@ public class DeathMenu : MonoBehaviour
         backgroundImg.color = Color.Lerp(new Color(0, 0, 0, 0), Color.black, transition);
     }
     public void ToggleEndMenu(float score)
-    {
+    {       
         gameObject.SetActive(true);
         scoreText.text = ((int)score).ToString();
         isShowned = true;
