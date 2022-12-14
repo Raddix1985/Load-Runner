@@ -73,9 +73,6 @@ public class PlayerMotor : MonoBehaviour
         if (controller.isGrounded && MobileInput.Instance.SwipeUp || Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
         {
             Jump();
-            
-            
-
 
         }
 
@@ -172,7 +169,7 @@ public class PlayerMotor : MonoBehaviour
     //Score on death
     private void Death()
     {
-        anim.SetBool("isDead", true);
+        anim.SetTrigger("Death");
         isDead = true;
         GetComponent<Score>().OnDeath();
         FindObjectOfType<AudioManager>().Stop("MainTheme");
@@ -186,7 +183,7 @@ public class PlayerMotor : MonoBehaviour
         anim.SetBool("isSliding", true);
         controller.center = new Vector3(0, -0.5f, 0);
         controller.height = 0f;
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.0f);
 
         controller.center = new Vector3(0, 0.7f, 0);
         controller.height = 1.8f;
