@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5644e863ee8504496e9ef6de82aff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyText: {fileID: 0}
+  energyText: {fileID: 1110608721}
   scoreText: {fileID: 234287436}
   backgroundImg: {fileID: 321092028}
 --- !u!1 &343869762
@@ -589,7 +589,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

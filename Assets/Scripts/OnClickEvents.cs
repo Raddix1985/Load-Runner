@@ -29,6 +29,7 @@ public class OnClickEvents : MonoBehaviour
         else
         {
             MainMenu.mute = true;
+            AudioListener.volume = 0;
             soundText.text = "/";        }
     }
 }
