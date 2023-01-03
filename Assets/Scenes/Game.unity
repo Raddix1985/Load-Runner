@@ -1335,6 +1335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3600cf4dd5295b4f9c245463228edeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookTarget: {fileID: 1733783258}
+  offset: {x: 0, y: 3, z: -6}
 --- !u!82 &963194230
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2301,6 +2303,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 401.15, y: 180, z: 0}
+--- !u!4 &1733783258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1979722456076973563, guid: 09f4ec0760032f64e855eff18e837c02, type: 3}
+  m_PrefabInstance: {fileID: 6774495601412183825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1740306719
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,48 +4,19 @@ using UnityEngine;
 
 public class CameraMotor : MonoBehaviour
 {
-    // Varaibles
-    private Transform lookAt;
-    private Vector3 startOffset;
-    private Vector3 moveVector;
 
-    private float transition = 0.0f;
-    private float animationDuration = 3.0f;
-    private Vector3 animationOffset = new Vector3(0, 5, 5);
+    public Transform lookTarget;
+    public Vector3 offset = new Vector3(0f, -2f, -1f);
 
-    void Start()
+    private void Start()
     {
-        // Set camera start location and player follow
-        lookAt = GameObject.FindGameObjectWithTag("Player").transform;
-        startOffset = transform.position - lookAt.position;
+        transform.position = lookTarget.position + offset;
     }
 
-    
-    void LateUpdate()
+    private void LateUpdate()
     {
-        // Fix camera position while following
-        moveVector = lookAt.position + startOffset;
-
-        // x
-        moveVector.x = 0;
-
-        // y
-        moveVector.y = Mathf.Clamp(moveVector.y, 3, 5);
-
-        // Animation at start of game
-        if (transition > 1.0f)
-        {
-            transform.position = moveVector;
-        }
-        else
-        {
-           
-            transform.position = Vector3.Lerp(moveVector + animationOffset, moveVector, transition);
-            transition += Time.deltaTime * 1 / animationDuration;
-            transform.LookAt(lookAt.position + Vector3.up);
-        }
-
-        
-
+        Vector3 desiredPosition = lookTarget.position + offset;
+        desiredPosition.x = 0f;
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime);
     }
 }
